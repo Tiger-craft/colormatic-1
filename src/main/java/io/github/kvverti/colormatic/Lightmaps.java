@@ -36,7 +36,7 @@ public final class Lightmaps {
 
     private static final Map<Identifier, Lightmap> lightmaps = new HashMap<>(3);
 
-    private static boolean worldRenderFinished = false;
+    private static boolean worldRenderFinished = true;
 
     public static Lightmap get(World world) {
         return lightmaps.get(Colormatic.getDimId(world));
