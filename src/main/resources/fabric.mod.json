@@ -10,6 +10,9 @@
     "Hambaka (Chinese Simplified localization)",
     "Madis0 (Estonian localization)"
   ],
+  "contributors": [
+    "Velnias75 (lighting GUI fix)"
+  ],
   "contact": {
     "homepage": "https://github.com/kvverti/colormatic",
     "issues": "https://github.com/kvverti/colormatic/issues",
