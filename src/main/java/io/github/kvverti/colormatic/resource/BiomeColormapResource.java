@@ -25,7 +25,6 @@ import io.github.kvverti.colormatic.colormap.BiomeColormap;
 import io.github.kvverti.colormatic.properties.InvalidColormapException;
 import io.github.kvverti.colormatic.properties.PropertyImage;
 import io.github.kvverti.colormatic.properties.PropertyUtil;
-
 import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.util.Identifier;

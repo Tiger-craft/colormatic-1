@@ -21,10 +21,10 @@
  */
 package io.github.kvverti.colormatic.colormap;
 
-import io.github.kvverti.colormatic.Colormatic;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import io.github.kvverti.colormatic.Colormatic;
 import net.minecraft.client.texture.NativeImage;
 
 /**

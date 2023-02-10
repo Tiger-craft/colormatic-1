@@ -21,11 +21,6 @@
  */
 package io.github.kvverti.colormatic.mixin.model;
 
-import com.mojang.brigadier.StringReader;
-import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import io.github.kvverti.colormatic.colormap.BiomeColormaps;
-import io.github.kvverti.colormatic.iface.ModelIdContext;
-import io.github.kvverti.colormatic.mixin.color.BlockColorsAccessor;
 import org.spongepowered.asm.mixin.Dynamic;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -33,22 +28,29 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import com.mojang.brigadier.StringReader;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
+
+import io.github.kvverti.colormatic.colormap.BiomeColormaps;
+import io.github.kvverti.colormatic.iface.ModelIdContext;
+import io.github.kvverti.colormatic.mixin.color.BlockColorsAccessor;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.model.ModelLoader;
 import net.minecraft.client.util.ModelIdentifier;
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.command.argument.BlockStateArgumentType;
+import net.minecraft.registry.BuiltinRegistries;
+import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.DynamicRegistryManager;
-import net.minecraft.util.registry.Registry;
 
 @Mixin(ModelLoader.class)
 public abstract class ModelLoaderMixin {
 
     // using the built in DRM is fine because blocks aren't dynamic.
+	// TODO: untested
     @Unique
-    private static final BlockStateArgumentType BLOCK_STATE_PARSER = BlockStateArgumentType.blockState(new CommandRegistryAccess(DynamicRegistryManager.BUILTIN.get()));
+	private static final BlockStateArgumentType BLOCK_STATE_PARSER = BlockStateArgumentType.blockState(CommandRegistryAccess.of(BuiltinRegistries.createWrapperLookup(), null));
 
     /**
      * Partially determines whether Colormatic should replace the tint on a model.
@@ -70,7 +72,7 @@ public abstract class ModelLoaderMixin {
             if(modelId.getVariant().equals("inventory")) {
                 // we're using the block color providers for detecting non-custom item tinting for now
                 var blockId = new Identifier(modelId.getNamespace(), modelId.getPath());
-                blockState = Registry.BLOCK.get(blockId).getDefaultState();
+                blockState = Registries.BLOCK.get(blockId).getDefaultState();
             } else {
                 var blockStateDesc = modelId.getNamespace() + ":" + modelId.getPath() + "[" + modelId.getVariant() + "]";
                 try {
@@ -87,7 +89,7 @@ public abstract class ModelLoaderMixin {
             // with provided biome colors.
             if(BiomeColormaps.isCustomColored(blockState)) {
                 var colorProviders = ((BlockColorsAccessor)MinecraftClient.getInstance().getBlockColors()).getProviders();
-                if(!colorProviders.containsKey(Registry.BLOCK.getRawId(blockState.getBlock()))) {
+                if(!colorProviders.containsKey(Registries.BLOCK.getRawId(blockState.getBlock()))) {
                     // tentatively set to true - further checking in JsonUnbakedModelMixin
                     ModelIdContext.customTintCurrentModel = true;
                 }

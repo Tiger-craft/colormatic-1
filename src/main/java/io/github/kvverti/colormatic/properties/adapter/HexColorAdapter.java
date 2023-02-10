@@ -21,6 +21,8 @@
  */
 package io.github.kvverti.colormatic.properties.adapter;
 
+import java.io.IOException;
+
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
@@ -28,8 +30,6 @@ import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
 
 import io.github.kvverti.colormatic.properties.HexColor;
-
-import java.io.IOException;
 
 public class HexColorAdapter extends TypeAdapter<HexColor> {
 

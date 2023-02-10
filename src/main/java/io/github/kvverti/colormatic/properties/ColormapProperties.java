@@ -35,19 +35,19 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
-import com.google.gson.JsonSyntaxException;
-import io.github.kvverti.colormatic.Colormatic;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.google.gson.JsonSyntaxException;
+
+import io.github.kvverti.colormatic.Colormatic;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.resource.Resource;
+import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.StringIdentifiable;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
 
 /**
@@ -207,7 +207,7 @@ public class ColormapProperties {
      *                                  given biome
      * @throws IllegalStateException    if the format is not grid format
      */
-    public ColumnBounds getColumn(RegistryKey<Biome> biomeKey, Registry<Biome> biomeRegistry) {
+    public ColumnBounds getColumn(RegistryKey<Biome> biomeKey, Map<Identifier, Integer> biomes) {
         if(format == Format.GRID) {
             if(biomeKey != null) {
                 Identifier id = biomeKey.getValue();
@@ -220,8 +220,8 @@ public class ColormapProperties {
                 } else {
                     return switch(layout) {
                         case DEFAULT -> DefaultColumns.getDefaultBounds(biomeKey);
-                        case OPTIFINE -> DefaultColumns.getOptifineBounds(biomeKey, biomeRegistry);
-                        case LEGACY -> DefaultColumns.getLegacyBounds(biomeKey, biomeRegistry, this.optifine);
+                        case OPTIFINE -> DefaultColumns.getOptifineBounds(biomeKey, biomes);
+                        case LEGACY -> DefaultColumns.getLegacyBounds(biomeKey, biomes, this.optifine);
                         case STABLE -> DefaultColumns.getStableBounds(biomeKey);
                     };
                 }
@@ -232,6 +232,10 @@ public class ColormapProperties {
             throw new IllegalStateException(format.toString());
         }
     }
+    
+    public ColumnBounds getColumn(RegistryKey<Biome> biomeKey, Registry<Biome> registry) {
+		return getColumn(biomeKey, Map.of(biomeKey.getValue(), Colormatic.CURRENTBIOMES.get(biomeKey).intValue()));
+	}
 
     /**
      * Returns the set of biomes this colormap applies to, or the empty set
@@ -399,4 +403,6 @@ public class ColormapProperties {
         Map<Identifier, Integer> biomes = null;
         List<GridEntry> grid = null;
     }
+
+	
 }

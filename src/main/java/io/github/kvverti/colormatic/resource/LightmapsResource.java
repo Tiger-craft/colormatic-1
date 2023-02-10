@@ -28,11 +28,11 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 
-import io.github.kvverti.colormatic.Lightmaps;
-import io.github.kvverti.colormatic.colormap.Lightmap;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import io.github.kvverti.colormatic.Lightmaps;
+import io.github.kvverti.colormatic.colormap.Lightmap;
 import net.fabricmc.fabric.api.resource.SimpleResourceReloadListener;
 import net.minecraft.client.texture.NativeImage;
 import net.minecraft.resource.Resource;

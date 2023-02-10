@@ -23,15 +23,13 @@ package io.github.kvverti.colormatic.colormap;
 
 import io.github.kvverti.colormatic.Colormatic;
 import io.github.kvverti.colormatic.mixin.color.BlockColorsAccessor;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.fluid.Fluid;
+import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.dimension.DimensionType;
 
 /**
  * These must be kept in sync with the mixins for provided colors and vanilla defaults.
@@ -55,7 +53,7 @@ final class DefaultColormaticResolverProviders {
             // therefore we pay the potential penalty of running through the biome blending twice
             var colorProvider = ((BlockColorsAccessor)MinecraftClient.getInstance().getBlockColors())
                 .getProviders()
-                .get(Registry.BLOCK.getRawId(key.getBlock()));
+                .get(Registries.BLOCK.getRawId(key.getBlock()));
             if(colorProvider != null) {
                 var world = MinecraftClient.getInstance().world;
                 return colorProvider.getColor(key, world, new BlockPos(posX, posY, posZ), 0);

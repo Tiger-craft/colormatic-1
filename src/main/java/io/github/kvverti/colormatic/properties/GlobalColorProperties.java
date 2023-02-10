@@ -28,21 +28,23 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.google.gson.JsonParseException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.Nullable;
 
+import com.google.gson.JsonParseException;
+
 import net.minecraft.block.MapColor;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.text.TextColor;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.StringIdentifiable;
-import net.minecraft.util.registry.Registry;
 
 /**
  * The global color.json file. It's a monster.
@@ -77,7 +79,7 @@ public class GlobalColorProperties {
         this.dimensionFog = convertIdMap(settings.fog);
         this.dimensionSky = convertIdMap(settings.sky);
         this.lilypad = settings.lilypad != null ? settings.lilypad.rgb() : 0;
-        this.potions = convertMap(settings.potion, Registry.STATUS_EFFECT);
+        this.potions = convertMap(settings.potion, Registries.STATUS_EFFECT);
         this.sheep = settings.sheep;
         this.sheepRgb = toRgb(settings.sheep);
         this.collar = settings.collar;
@@ -158,7 +160,7 @@ public class GlobalColorProperties {
 
     private static Map<EntityType<?>, int[]> collateSpawnEggColors(Settings settings) {
         Map<EntityType<?>, int[]> res = new HashMap<>();
-        Registry<EntityType<?>> registry = Registry.ENTITY_TYPE;
+        Registry<EntityType<?>> registry = Registries.ENTITY_TYPE;
         // handle legacy egg color structure
         if(settings.egg != null) {
             LegacyEggColor legacy = settings.egg;

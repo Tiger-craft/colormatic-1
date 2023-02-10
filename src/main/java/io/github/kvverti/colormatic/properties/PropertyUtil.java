@@ -35,6 +35,7 @@ import java.util.function.Predicate;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
 import io.github.kvverti.colormatic.properties.adapter.ApplicableBlockStatesAdapter;
 import io.github.kvverti.colormatic.properties.adapter.ChatFormatAdapter;
 import io.github.kvverti.colormatic.properties.adapter.GridEntryAdapter;
@@ -42,7 +43,6 @@ import io.github.kvverti.colormatic.properties.adapter.HexColorAdapter;
 import io.github.kvverti.colormatic.properties.adapter.IdentifierAdapter;
 import io.github.kvverti.colormatic.properties.adapter.MaterialColorAdapter;
 import io.github.kvverti.colormatic.properties.adapter.StringIdentifiableTypeAdapterFactory;
-
 import net.minecraft.block.MapColor;
 import net.minecraft.client.texture.NativeImage;
 import net.minecraft.resource.ResourceManager;

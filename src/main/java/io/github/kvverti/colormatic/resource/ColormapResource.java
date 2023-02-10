@@ -26,7 +26,6 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 
 import net.fabricmc.fabric.api.resource.SimpleResourceReloadListener;
-
 import net.minecraft.client.util.RawTextureDataLoader;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.util.Identifier;

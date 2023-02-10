@@ -25,7 +25,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import io.github.kvverti.colormatic.colormap.Lightmap;
-
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
@@ -34,7 +33,9 @@ import net.minecraft.world.World;
  */
 public final class Lightmaps {
 
-    private static final Map<Identifier, Lightmap> lightmaps = new HashMap<>();
+    private static final Map<Identifier, Lightmap> lightmaps = new HashMap<>(3);
+
+    private static boolean worldRenderFinished = true;
 
     public static Lightmap get(World world) {
         return lightmaps.get(Colormatic.getDimId(world));
@@ -47,4 +48,12 @@ public final class Lightmaps {
     public static void clearLightmaps() {
         lightmaps.clear();
     }
+
+	public static boolean isWorldRenderFinished() {
+		return worldRenderFinished;
+	}
+
+	public static void setWorldRenderFinished(final boolean worldRenderFinished) {
+		Lightmaps.worldRenderFinished = worldRenderFinished;
+	}
 }

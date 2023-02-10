@@ -22,7 +22,6 @@
 package io.github.kvverti.colormatic.resource;
 
 import io.github.kvverti.colormatic.properties.LightmapProperties;
-
 import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.util.Identifier;

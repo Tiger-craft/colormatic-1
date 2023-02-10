@@ -25,11 +25,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 
-import com.google.gson.JsonParseException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import net.minecraft.resource.Resource;
+import com.google.gson.JsonParseException;
+
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.util.Identifier;
 

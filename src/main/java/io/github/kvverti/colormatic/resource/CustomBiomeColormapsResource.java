@@ -21,8 +21,13 @@
  */
 package io.github.kvverti.colormatic.resource;
 
+import static java.util.stream.Collectors.toList;
+
 import java.util.Collection;
 import java.util.regex.Pattern;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import io.github.kvverti.colormatic.Colormatic;
 import io.github.kvverti.colormatic.colormap.BiomeColormap;
@@ -30,14 +35,9 @@ import io.github.kvverti.colormatic.colormap.BiomeColormaps;
 import io.github.kvverti.colormatic.properties.InvalidColormapException;
 import io.github.kvverti.colormatic.properties.PropertyImage;
 import io.github.kvverti.colormatic.properties.PropertyUtil;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.util.Identifier;
-
-import static java.util.stream.Collectors.toList;
 
 /**
  * Handles custom colormaps for blocks.

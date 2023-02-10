@@ -26,13 +26,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import com.google.common.collect.HashBasedTable;
-import com.google.common.collect.Table;
-import io.github.kvverti.colormatic.Colormatic;
 import org.jetbrains.annotations.Nullable;
 
+import com.google.common.collect.HashBasedTable;
+import com.google.common.collect.Table;
+
+import io.github.kvverti.colormatic.Colormatic;
+import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.DynamicRegistryManager;
 import net.minecraft.world.biome.Biome;
 
 /**
