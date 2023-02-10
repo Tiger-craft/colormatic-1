@@ -46,7 +46,7 @@ public abstract class WorldRendererMixin {
             )
         )
     )
-    private double modifyVoidBackgroundCondition(double zero) {
+    private static double modifyVoidBackgroundCondition(double zero) {
         if(Colormatic.config().clearVoid) {
             zero = Double.NEGATIVE_INFINITY;
         }

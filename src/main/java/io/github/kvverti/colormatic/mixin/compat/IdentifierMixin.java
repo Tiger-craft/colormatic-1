@@ -22,36 +22,31 @@
 package io.github.kvverti.colormatic.mixin.compat;
 
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 import net.minecraft.util.Identifier;
 
 @Mixin(Identifier.class)
 public abstract class IdentifierMixin {
 
-    @Shadow
-    public abstract String getNamespace();
-
-    @Shadow
-    public abstract String getPath();
-
+	// TODO: I don't get this mixin getting compiled with gradle,
+	//       in the IDE (eclipse) it works without problems 
+	
     /**
      * Allow arbitrary characters in path names for Optifine files
      */
+	/*-
     @ModifyArg(
-        method = "<init>([Ljava/lang/String;)V",
+        method = "<init>(Ljava/lang/String;Ljava/lang/String;)V",
         index = 0,
         at = @At(
             value = "INVOKE",
-            target = "Lnet/minecraft/util/Identifier;isPathValid(Ljava/lang/String;)Z"
+            target = "validatePath(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;"
         )
     )
-    private String skipValidationForColormatic(String path) {
-        if(this.getNamespace().equals("minecraft") && this.getPath().startsWith("optifine/")) {
+    private static String skipValidationForColormatic(String namespace, String path) {
+        if(namespace.equals("minecraft") && path.startsWith("optifine/")) {
             path = "safe_id_for_allowing_invalid_chars";
         }
         return path;
-    }
+    }*/
 }

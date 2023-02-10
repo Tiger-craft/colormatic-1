@@ -21,28 +21,13 @@
  */
 package io.github.kvverti.colormatic.mixin.model;
 
-import org.spongepowered.asm.mixin.Dynamic;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import com.mojang.brigadier.StringReader;
-import com.mojang.brigadier.exceptions.CommandSyntaxException;
-
-import io.github.kvverti.colormatic.colormap.BiomeColormaps;
-import io.github.kvverti.colormatic.iface.ModelIdContext;
-import io.github.kvverti.colormatic.mixin.color.BlockColorsAccessor;
-import net.minecraft.block.BlockState;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.model.ModelLoader;
-import net.minecraft.client.util.ModelIdentifier;
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.command.argument.BlockStateArgumentType;
 import net.minecraft.registry.BuiltinRegistries;
-import net.minecraft.registry.Registries;
-import net.minecraft.util.Identifier;
 
 @Mixin(ModelLoader.class)
 public abstract class ModelLoaderMixin {
@@ -57,6 +42,7 @@ public abstract class ModelLoaderMixin {
      * We parse the block state from the model ID. It is important that custom biome colormaps are
      * reloaded <em>before</em> this callback is run.
      */
+    /*-TODO: can't get this mixin acceppted without exception
     @Dynamic("Model baking lambda in upload()")
     @Inject(
         method = "method_4733",
@@ -95,5 +81,5 @@ public abstract class ModelLoaderMixin {
                 }
             }
         }
-    }
+    } */
 }

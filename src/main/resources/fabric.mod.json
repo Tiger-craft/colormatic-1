@@ -10,6 +10,9 @@
     "Hambaka (Chinese Simplified localization)",
     "Madis0 (Estonian localization)"
   ],
+  "contributors": [
+    "Velnias75 (lighting GUI fix, partial 1.19.3 port)"
+  ],
   "contact": {
     "homepage": "https://github.com/kvverti/colormatic",
     "issues": "https://github.com/kvverti/colormatic/issues",
@@ -35,12 +38,13 @@
   ],
 
   "depends": {
-    "fabricloader": ">=0.11.0",
-    "fabric-resource-loader-v0": ">=0.4"
+    "minecraft": ">=1.19.3",
+    "fabricloader": ">=0.14.0",
+    "fabric-resource-loader-v0": ">=0.8"
   },
   "recommends": {
     "quilt_loader": "*",
-    "modmenu": "^4.0.0"
+    "modmenu": "^5.0.0"
   },
   "suggests": {
     "flamingo": "*"

@@ -21,18 +21,18 @@
  */
 package io.github.kvverti.colormatic.mixin.dye;
 
-import io.github.kvverti.colormatic.Colormatic;
-
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
-
-import net.minecraft.client.texture.TextureManager;
-import net.minecraft.resource.ResourceManager;
 
 import org.spongepowered.asm.mixin.Dynamic;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+import io.github.kvverti.colormatic.Colormatic;
+import net.minecraft.client.texture.TextureManager;
+import net.minecraft.resource.ResourceManager;
 
 /**
  * Ensures that color.json is loaded before textures are created.
@@ -41,9 +41,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(TextureManager.class)
 public abstract class TextureManagerMixin {
 
-    @Dynamic("Post reload lambda method")
+	@Dynamic("Post reload lambda method")
     @Inject(method = "method_18167", at = @At("HEAD"))
-    private void onReload(ResourceManager manager, Executor exec, Void v, CallbackInfo info) {
+    private void onReload(ResourceManager manager, Executor exec, CompletableFuture<Void> f, Void v, CallbackInfo info) {
         Colormatic.COLOR_PROPS.reload(manager);
     }
 }
